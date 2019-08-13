@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import NewMentorForm from './NewMentorForm'
 import axios from 'axios'
 
 export default class Career extends Component {
@@ -55,7 +56,8 @@ export default class Career extends Component {
                 <h3>Description</h3>
                 <p>{this.state.career.description}</p>
                 <h3>Mentors</h3>
-                <Link to="/mentors/new">Add a Mentor</Link>
+                {/* <Link to="/mentors/new">Add a Mentor</Link> */}
+                <NewMentorForm match={this.props.match}/>
                 {mentorList}
             </div>
         )

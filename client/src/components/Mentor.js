@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import NewPostForm from './NewPostForm'
 import axios from 'axios'
 
 export default class Mentor extends Component {
@@ -56,7 +57,7 @@ export default class Mentor extends Component {
                 <p>{this.state.mentor.advice_topics}</p>
                 <input type="submit" value="Delete Mentor" onClick={this.deleteMentor} />
                 <h1>Blog Posts</h1>
-                <Link to="/blogposts/new">Add Post</Link>
+                <NewPostForm match={this.props.match} />
                     {postList}
             </div>
         )
