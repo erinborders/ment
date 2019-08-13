@@ -13,7 +13,7 @@ export default class Career extends Component {
     }
 
     fetchCareer = () => {
-        axios.get(`/api/v1/careers/${this.props.match.params.id}`)
+        axios.get(`/api/v1/careers/${this.props.match.params.id}/`)
             .then(career => {
                 this.setState({
                     career: career.data,
