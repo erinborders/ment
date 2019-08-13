@@ -4,6 +4,7 @@ import CareerList from './components/CareerList'
 import Career from './components/Career'
 import Mentor from './components/Mentor'
 import Post from './components/Post'
+import NewCareerForm from './components/NewCareerForm'
 import './App.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
 
         <Switch>
           <Route exact path="/" component={CareerList} />
+          <Route path="/careers/new" component={NewCareerForm} />
           <Route path="/careers/:id" component={Career} />
           <Route path="/mentors/:id" component={Mentor} />
           <Route path="/blogposts/:id" component={Post} />

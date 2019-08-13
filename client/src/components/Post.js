@@ -21,7 +21,6 @@ export default class Post extends Component {
             })
     }
 
-    // TO DO: CHECK TO MAKE SURE ALL DELETE BUTTONS WORK
     deletePost = (evt) => {
         evt.preventDefault()
 
@@ -44,7 +43,6 @@ export default class Post extends Component {
         this.setState({blogPost: editedBlogPost})
     }
 
-    // TO DO: CHECK TO MAKE SURE THIS WORKS
     handleSubmit =(evt) => {
         evt.preventDefault()
 
@@ -75,7 +73,7 @@ export default class Post extends Component {
                     // TO DO: CHANGE TO BOOTSTRAP FORM
                     <div className="edit-form">
                         <h2>Edit Form</h2> 
-                        <form>
+                        <form onSubmit={this.handleSubmit}>
                             <label htmlFor="post-title">Title: </label>
                             <input
                                 id="post-title"
