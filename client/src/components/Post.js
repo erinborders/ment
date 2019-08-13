@@ -47,9 +47,6 @@ export default class Post extends Component {
         evt.preventDefault()
 
         axios.put(`/api/v1/blogposts/${this.props.match.params.id}/`, this.state.blogPost)
-            .then(() => {
-                console.log('blog post edited!')
-            })
     }
 
 
@@ -71,6 +68,7 @@ export default class Post extends Component {
                     this.state.isEditFormShowing ?
                     // edit form
                     // TO DO: CHANGE TO BOOTSTRAP FORM
+                    // TO DO: PUT IN ITS OWN COMPONENT
                     <div className="edit-form">
                         <h2>Edit Form</h2> 
                         <form onSubmit={this.handleSubmit}>
