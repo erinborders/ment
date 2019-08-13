@@ -16,7 +16,6 @@ export default class Career extends Component {
     fetchCareer = () => {
         axios.get(`/api/v1/careers/${this.props.match.params.id}/`)
             .then(career => {
-                console.log(career)
                 this.setState({
                     career: career.data
                 })
@@ -27,7 +26,7 @@ export default class Career extends Component {
         let mentorList = this.state.career.mentors.map(mentor => {
             return(
                 <div key={mentor.id}>
-                    <img src={this.state.mentor.image_url} alt="Mentor profile picture" />
+                    <img src={mentor.image_url} alt="Mentor profile picture" />
                     {/* TO DO: check that this link works */}
                     <Link to={`/mentors/${mentor.id}`}>{mentor.name}</Link>
                     <p>{mentor.profession}</p>

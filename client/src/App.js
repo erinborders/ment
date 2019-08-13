@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import CareerList from './components/CareerList'
 import Career from './components/Career'
+import Mentor from './components/Mentor'
+import Post from './components/Post'
 import './App.css';
 
 function App() {
   return (
-    <Router>
+    
       <div className="App">
+        <Router>
         <div>
           <h1>MenT</h1>
           <div>
@@ -18,10 +21,12 @@ function App() {
         <Switch>
           <Route exact path="/" component={CareerList} />
           <Route path="/careers/:id" component={Career} />
+          <Route path="/mentors/:id" component={Mentor} />
+          <Route path="/blogposts/:id" component={Post} />
         </Switch>
-     
+        </Router>
       </div>
-    </Router>
+    
   );
 }
 

@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export default class Post extends Component {
     state = {
-        post: {}
+        blogPost: {}
     }
 
     componentDidMount() {
@@ -11,9 +11,9 @@ export default class Post extends Component {
     }
 
     fetchPost = () => {
-        axios.get(`/api/v1/posts/${this.props.match.params.id}/`)
-            .then(post => {
-                this.setState({post})
+        axios.get(`/api/v1/blogposts/${this.props.match.params.id}/`)
+            .then(blogPost => {
+                this.setState({blogPost: blogPost.data})
             })
     }
 
@@ -21,10 +21,10 @@ export default class Post extends Component {
     render() {
         return (
             <div>
-                <h1>{this.state.post.title}</h1>
-                <p>{this.state.post.date}</p>
-                <h3>{this.state.post.description}</h3>
-                <p>{this.state.post.body}</p>
+                <h1>{this.state.blogPost.title}</h1>
+                <p>{this.state.blogPost.date}</p>
+                <h3>{this.state.blogPost.description}</h3>
+                <p>{this.state.blogPost.body}</p>
             </div>
         )
     }

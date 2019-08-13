@@ -27,7 +27,7 @@ export default class Mentor extends Component {
         let postList = this.state.posts.map(post => {
             return(
                 <div key={post.id}>
-                    <Link to={`/posts/${post.id}`} >{post.title}</Link>
+                    <Link to={`/blogposts/${post.id}`} >{post.title}</Link>
                     <p>{post.description}</p>
                 </div>
             )
