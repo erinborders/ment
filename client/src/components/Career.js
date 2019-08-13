@@ -15,6 +15,7 @@ export default class Career extends Component {
     fetchCareer = () => {
         axios.get(`/api/v1/careers/${this.props.match.params.id}/`)
             .then(career => {
+                console.log(career)
                 this.setState({
                     career: career.data,
                     mentors: career.data.mentors

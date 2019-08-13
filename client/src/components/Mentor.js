@@ -13,7 +13,7 @@ export default class Mentor extends Component {
     }
 
     fetchMentor = () => {
-        axios.get(`/api/v1/mentors/${this.props.match.params.id}`)
+        axios.get(`/api/v1/mentors/${this.props.match.params.id}/`)
             .then(mentor => {
                 this.setState({
                     mentor: mentor.data,

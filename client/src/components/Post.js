@@ -11,7 +11,7 @@ export default class Post extends Component {
     }
 
     fetchPost = () => {
-        axios.get(`/api/v1/posts/${this.props.match.params.id}`)
+        axios.get(`/api/v1/posts/${this.props.match.params.id}/`)
             .then(post => {
                 this.setState({post})
             })
