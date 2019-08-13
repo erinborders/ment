@@ -8,10 +8,10 @@ export default class CareerList extends Component {
     }
 
     componentDidMount(){
-        this.fetchArtists()
+        this.fetchCareers()
     }
 
-    fetchArtists = () => {
+    fetchCareers = () => {
         axios.get('/api/v1/careers/')
             .then(careers => {
                 this.setState({careers: careers.data})
