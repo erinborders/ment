@@ -4,8 +4,9 @@ import axios from 'axios'
 
 export default class Career extends Component {
     state = {
-        career: {},
-        mentors: []
+        career: {
+            mentors: []
+        }
     }
 
     componentDidMount(){
@@ -17,19 +18,18 @@ export default class Career extends Component {
             .then(career => {
                 console.log(career)
                 this.setState({
-                    career: career.data,
-                    mentors: career.data.mentors
+                    career: career.data
                 })
             })
     }
 
     render() {
-        let mentorList = this.state.mentors.map(mentor => {
+        let mentorList = this.state.career.mentors.map(mentor => {
             return(
                 <div key={mentor.id}>
                     <img src={this.state.mentor.image_url} alt="Mentor profile picture" />
                     {/* TO DO: check that this link works */}
-                    <Link to={`/api/v1/mentors/${mentor.id}`}>{mentor.name}</Link>
+                    <Link to={`/mentors/${mentor.id}`}>{mentor.name}</Link>
                     <p>{mentor.profession}</p>
                     <p>{mentor.company}</p>
                 </div>
