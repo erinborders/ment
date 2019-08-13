@@ -4,7 +4,15 @@ import axios from 'axios'
 
 export default class NewCareerForm extends Component {
     state = {
-        newCareer: {},
+        newCareer: {
+            career_field: '',
+            occupations: '',
+            description: '',
+            skills: '',
+            education: '',
+            employers: '',
+            job_data: ''
+        },
         redirectToHome: false
     }
 

@@ -55,6 +55,7 @@ export default class Career extends Component {
                 <h3>Description</h3>
                 <p>{this.state.career.description}</p>
                 <h3>Mentors</h3>
+                <Link to="/mentors/new">Add a Mentor</Link>
                 {mentorList}
             </div>
         )

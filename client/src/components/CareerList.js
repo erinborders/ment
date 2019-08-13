@@ -30,6 +30,7 @@ export default class CareerList extends Component {
         return (
             <div>
                 <h1>Career List</h1>
+                <Link to="/careers/new">Add Career</Link>
                 {careerList}
             </div>
         )

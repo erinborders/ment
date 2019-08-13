@@ -56,6 +56,7 @@ export default class Mentor extends Component {
                 <p>{this.state.mentor.advice_topics}</p>
                 <input type="submit" value="Delete Mentor" onClick={this.deleteMentor} />
                 <h1>Blog Posts</h1>
+                <Link to="/blogposts/new">Add Post</Link>
                     {postList}
             </div>
         )
