@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 export default class NewPostForm extends Component {
-    // TO DO: MOVE NEW FORM COMPONENTS TO THEIR PARENT COMPONENTS SO YOU CAN USE PARAMS ID
     state = {
         newBlogPost: {
             title: '',
