@@ -21,7 +21,7 @@ export default class YouthProgramForm extends Component {
     handleSubmit = (evt) => {
         evt.preventDefault()
         // look up query strings
-        axios.get(`/api/v1/youth-programs/`)
+        axios.get(`/api/v1/youth-programs/?location=${this.state.youthProgram.location}&radius=${this.state.youthProgram.radius}`)
             .then(programs => {
                 console.log(programs.data.YouthProgramList)
                 this.setState({
@@ -42,12 +42,14 @@ export default class YouthProgramForm extends Component {
 
         return (
             <div>
+                <h2>Nearby Youth Job Programs</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="youth-program-location">Location: </label>
                     <input
                         id="youth-program-location"
                         type="text"
                         name="location"
+                        placeholder="Zipcode"
                         onChange={this.handleChange}
                         value={this.state.youthProgram.location} />
 
