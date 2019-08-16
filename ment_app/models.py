@@ -4,7 +4,9 @@ from django.db import models
 class Career(models.Model):
     career_field = models.CharField(max_length=500)
     occupations = models.CharField(max_length=500)
-    description = models.TextField()
+    # description = models.TextField()
+    onetcode = models.CharField(max_length=100, default='29-1171.00')
+    state = models.CharField(max_length=100, default='GA')
     skills = models.CharField(max_length=500)
     education = models.CharField(max_length=500)
     employers = models.CharField(max_length=500)
