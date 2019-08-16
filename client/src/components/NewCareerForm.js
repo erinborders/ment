@@ -7,11 +7,8 @@ export default class NewCareerForm extends Component {
         newCareer: {
             career_field: '',
             occupations: '',
-            description: '',
-            skills: '',
-            education: '',
-            employers: '',
-            job_data: ''
+            onetcode: '',
+            state: ''
         },
         redirectToHome: false
     }
@@ -40,6 +37,7 @@ export default class NewCareerForm extends Component {
 
         return (
             <div>
+                <a href="https://www.onetcodeconnector.org/find/result">Find OnetCodes</a>
                 <h2>New Career Form</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="career-field">Career Field: </label>
@@ -58,15 +56,23 @@ export default class NewCareerForm extends Component {
                         onChange={this.handleChange}
                         value={this.state.newCareer.occupations} />
 
-                    <label htmlFor="career-description">Career Description: </label>
+                    <label htmlFor="career-onetcode">Career OnetCode: </label>
                     <input
-                        id="career-description"
+                        id="career-onetcode"
                         type="text"
-                        name="description"
+                        name="onetcode"
                         onChange={this.handleChange}
-                        value={this.state.newCareer.description} />
+                        value={this.state.newCareer.onetcode} />
 
-                    <label htmlFor="career-skills">Career Skills: </label>
+                    <label htmlFor="career-state">State: </label>
+                    <input 
+                        id="career-state"
+                        type="text"
+                        name="state"
+                        onChange={this.handleChange}
+                        value={this.state.newCareer.state} />
+
+                    {/* <label htmlFor="career-skills">Career Skills: </label>
                     <input
                         id="career-skills"
                         type="text"
@@ -96,7 +102,7 @@ export default class NewCareerForm extends Component {
                         type="text"
                         name="job_data"
                         onChange={this.handleChange}
-                        value={this.state.newCareer.job_data} />
+                        value={this.state.newCareer.job_data} /> */}
 
                     <input type="submit" value="Add New Career" />
                 </form>
