@@ -5,7 +5,7 @@ import Career from './components/Career'
 import Mentor from './components/Mentor'
 import Post from './components/Post'
 import NewCareerForm from './components/NewCareerForm'
-import YouthProgramForm from './components/YouthProgramForm'
+import FindCentersForm from './components/FindCentersForm'
 import './App.css';
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
           <Route exact path="/" component={CareerList} />
           <Route path="/careers/new" component={NewCareerForm} />
           <Route path="/careers/:id" component={Career} />
-          <Route path="/search" component={YouthProgramForm} />
+          <Route path="/search" component={FindCentersForm} />
           <Route path="/mentors/:id" component={Mentor} />
           <Route path="/blogposts/:id" component={Post} />
         </Switch>
