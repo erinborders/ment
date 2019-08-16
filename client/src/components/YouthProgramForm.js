@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import settings from django.config
 
 export default class YouthProgramForm extends Component {
     state = {
         youthProgram: {
             location: '',
             radius: ''
-        }
+        },
+        hasSearched: false,
+        programs: []
     }
 
     handleChange = (evt) => {
@@ -19,11 +20,26 @@ export default class YouthProgramForm extends Component {
 
     handleSubmit = (evt) => {
         evt.preventDefault()
-
-        axios.get(`https://api.careeronestop.org/v1/youthprogramfinder/${settings.CAREERONESTOP_ID}/${this.state.youthProgram.location}/${this.state.youthProgram.radius}`)
+        // look up query strings
+        axios.get(`/api/v1/youth-programs/`)
+            .then(programs => {
+                console.log(programs.data.YouthProgramList)
+                this.setState({
+                    programs: programs.data.YouthProgramList,
+                    hasSearched: true
+                })
+            })
     }
 
     render() {
+        let programList = this.state.programs.map(program => {
+            return(
+                <div key={program.ID}>
+                    {program.Name}  
+                </div>
+            )
+        })
+
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -45,6 +61,10 @@ export default class YouthProgramForm extends Component {
 
                     <input type="submit" value="Find Youth Programs" />
                 </form>
+                {
+                    this.state.hasSearched ?
+                    programList : null
+                }
             </div>
         )
     }

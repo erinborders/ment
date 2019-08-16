@@ -17,6 +17,7 @@ function App() {
           <h1>MenT</h1>
           <div>
             <Link to="/">Careers</Link>
+            <Link to="/search">Job Centers Near You</Link>
           </div>
         </div>
 
@@ -24,9 +25,8 @@ function App() {
           <Route exact path="/" component={CareerList} />
           <Route path="/careers/new" component={NewCareerForm} />
           <Route path="/careers/:id" component={Career} />
-          <Route path="" />
+          <Route path="/search" component={YouthProgramForm} />
           <Route path="/mentors/:id" component={Mentor} />
-          {/* <Route path="/blogposts/new" component={NewPostForm} /> */}
           <Route path="/blogposts/:id" component={Post} />
         </Switch>
         </Router>
