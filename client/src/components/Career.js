@@ -8,6 +8,7 @@ export default class Career extends Component {
         career: {
             mentors: []
         },
+        description: '',
         redirectToHome: false
     }
 
@@ -21,6 +22,15 @@ export default class Career extends Component {
                 this.setState({
                     career: career.data
                 })
+            })
+    }
+
+    // get request for job description from careeronestop api
+    getJobDescription = () => {
+        axios.get(`/api/v1/careers/?onetcode=${this.state.career.onetcode}&state=${this.state.career.state}`)
+            .then(description => {
+                console.log(description.data.Purpose.OnetDesc)
+                this.setState({description: description.data.Purpose.OnetDesc})
             })
     }
 
@@ -54,7 +64,8 @@ export default class Career extends Component {
                 <h2>{this.state.career.career_field}</h2>
                 <input type="submit" value="Delete Career" onClick={this.deleteCareer} />
                 <h3>Description</h3>
-                <p>{this.state.career.description}</p>
+                {/* <p>{this.state.career.description}</p> */}
+                <p>{this.state.description}</p>
                 <h3>Mentors</h3>
                 {/* <Link to="/mentors/new">Add a Mentor</Link> */}
                 <NewMentorForm match={this.props.match}/>
