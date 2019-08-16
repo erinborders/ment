@@ -1,6 +1,7 @@
 from rest_framework import serializers 
 from .models import Career, Mentor, BlogPost
 
+
 class BlogPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogPost
@@ -19,3 +20,4 @@ class CareerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Career
         fields = ('id', 'career_field', 'occupations', 'description', 'skills', 'education', 'employers', 'job_data', 'mentors')
+
