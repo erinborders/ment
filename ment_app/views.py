@@ -34,7 +34,10 @@ class BlogPostView(viewsets.ModelViewSet):
 # import requests
 
 def get_youth_programs(request):
-    url = 'https://api.careeronestop.org/v1/youthprogramfinder/4pUtE9Nb1oWToXh/GA/25/0/0/0/10'
+    location = request.GET['location']
+    radius = request.GET['radius']
+    url = 'https://api.careeronestop.org/v1/youthprogramfinder/4pUtE9Nb1oWToXh/{location}/{radius}/0/0/0/10'.format(location=location, radius=radius)
+    
     headers = {'Authorization': 'Bearer Kw0dxrHlk9scXFl2RzjzjJTVKKXH6QR6/d2n4Aijlil1cVIEm8h0dystL8FEwsLg6OMEc6//sqZS4Iu9VU8Tgg=='}
 
     r = requests.get(url, headers=headers).json()
