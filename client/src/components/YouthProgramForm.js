@@ -20,7 +20,7 @@ export default class YouthProgramForm extends Component {
 
     handleSubmit = (evt) => {
         evt.preventDefault()
-        // look up query strings
+        
         axios.get(`/api/v1/youth-programs/?location=${this.state.youthProgram.location}&radius=${this.state.youthProgram.radius}`)
             .then(programs => {
                 console.log(programs.data.YouthProgramList)

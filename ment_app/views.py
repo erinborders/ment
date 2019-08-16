@@ -5,6 +5,7 @@ from .models import Career, Mentor, BlogPost
 from .forms import YouthProgramForm
 from django.http import JsonResponse
 import requests 
+from django.conf import settings
 
 
 class CareerView(viewsets.ModelViewSet):
@@ -20,25 +21,14 @@ class BlogPostView(viewsets.ModelViewSet):
     serializer_class = BlogPostSerializer
 
 
-# def youth_program(request):
-#     search_result = {}
-#     if 'location' and 'radius' in request.GET:
-#         form = YouthProgramForm(request.GET)
-#         if form.is_valid():
-#             search_result = form.search()
-#     else:
-#         form = YouthProgramForm()
-#     return render(request, 'components/YouthProgramForm', {'form': form, 'search_result': search_result})
-
-# pipenv install requests
-# import requests
-
 def get_youth_programs(request):
     location = request.GET['location']
     radius = request.GET['radius']
-    url = 'https://api.careeronestop.org/v1/youthprogramfinder/4pUtE9Nb1oWToXh/{location}/{radius}/0/0/0/10'.format(location=location, radius=radius)
+    userId = settings.CAREERONESTOP_ID
+    key = settings.CAREERONESTOP_KEY
+    url = 'https://api.careeronestop.org/v1/youthprogramfinder/{userId}/{location}/{radius}/0/0/0/10'.format(userId=userId, location=location, radius=radius)
     
-    headers = {'Authorization': 'Bearer Kw0dxrHlk9scXFl2RzjzjJTVKKXH6QR6/d2n4Aijlil1cVIEm8h0dystL8FEwsLg6OMEc6//sqZS4Iu9VU8Tgg=='}
+    headers = {'Authorization': 'Bearer ' + key}
 
     r = requests.get(url, headers=headers).json()
 
