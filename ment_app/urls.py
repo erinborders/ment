@@ -11,5 +11,6 @@ urlpatterns = [
     path('', include(router.urls)),
     # backend url, doesn't have to match client-side routes
     path('youth-programs/', views.get_youth_programs),
-    path('job-centers/', views.get_job_centers)
+    path('job-centers/', views.get_job_centers),
+    path('job-data/', views.get_job_info)
 ]

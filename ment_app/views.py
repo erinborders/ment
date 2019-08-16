@@ -53,3 +53,20 @@ def get_job_centers(request):
     else:
         print(r)
     return JsonResponse(r, safe=False)
+
+def get_job_info(request):
+    onetcode = request.GET['onetcode']
+    state = request.GET['state']
+    userId = settings.CAREERONESTOP_ID
+    key = settings.CAREERONESTOP_KEY
+    url = 'https://api.careeronestop.org/v1/jdw/{userId}/{onetcode}/{state}/0'.format(userId=userId, onetcode=onetcode, state=state)
+
+    headers = {'Authorization': 'Bearer ' + key}
+
+    r = requests.get(url, headers=headers).json()
+
+    if r == None:
+        print('Nothing returned')
+    else:
+        print(r)
+    return JsonResponse(r, safe=False)
