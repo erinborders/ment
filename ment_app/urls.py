@@ -10,5 +10,6 @@ router.register('blogposts', views.BlogPostView)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('')
+    # backend url, doesn't have to match client-side routes
+    path('youth-programs/', views.get_youth_programs)
 ]

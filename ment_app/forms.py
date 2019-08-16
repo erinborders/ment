@@ -2,6 +2,7 @@ from django import forms
 from django.conf import settings
 import requests
 
+# TO DO: DELETE THIS
 # form to search for nearby youth job programs
 class YouthProgramForm(forms.Form):
     location = forms.CharField(max_length=255)
@@ -16,7 +17,7 @@ class YouthProgramForm(forms.Form):
         endpoint = 'https://api.careeronestop.org/v1/youthprogramfinder/{userId}/{location}/{radius}'
         url = endpoint.format(userId=userId, location=location, radius=radius)
         # careeronestop asked for this info in the request header
-        headers = {'Authorization': settings.CAREERONESTOP_KEY}
+        headers = {'Authorization': 'Bearer ' + settings.CAREERONESTOP_KEY}
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             result = response.json()
