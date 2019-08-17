@@ -70,3 +70,20 @@ def get_job_info(request):
     else:
         print(r)
     return JsonResponse(r, safe=False)
+
+def get_job_skills(request):
+    onetcode = request.GET['onetcode']
+    state = request.GET['state']
+    userId = settings.CAREERONESTOP_ID
+    key = settings.CAREERONESTOP_KEY
+    url = 'https://api.careeronestop.org/v1/occupation/{userId}/{onetcode}/{state}?training=false&interest=false&videos=false&tasks=false&dwas=false&wages=false&alternateOnetTitles=false&projectedEmployment=false&ooh=false&stateLMILinks=false&relatedOnetTitles=false&skills=true&knowledge=false&ability=false&trainingPrograms=false'.format(userId=userId, onetcode=onetcode, state=state)
+
+    headers = {'Authorization': 'Bearer ' + key}
+
+    r = requests.get(url, headers=headers).json()
+
+    if r == None:
+        print('Nothing returned')
+    else:
+        print(r)
+    return JsonResponse(r, safe=False)
