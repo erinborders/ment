@@ -29,20 +29,27 @@ export default class Career extends Component {
             })
             .then(() => {
                 this.getJobDescription()
+                this.getJobSkills()
             })
     }
 
-    // get request for job description from careeronestop api
+    // get request for job description and certifications from careeronestop api
     getJobDescription = () => {
         axios.get(`/api/v1/job-data/?onetcode=${this.state.career.onetcode}&state=${this.state.career.state}`)
             .then(jobinfo => {
-                console.log(jobinfo.data)
-                
                 this.setState({
                     description: jobinfo.data.Purpose.OnetDesc,
-                    skills: jobinfo.data.SkillsList,
+                    // skills: jobinfo.data.SkillsList,
                     education: jobinfo.data.Education.Certifications
                 })
+            })
+    }
+
+    // get request for job skills from careeronestop api
+    getJobSkills = () => {
+        axios.get(`/api/v1/job-skills/?onetcode=${this.state.career.onetcode}&state=${this.state.career.state}`)
+            .then(jobskills => {
+                this.setState({skills: jobskills.data.OccupationDetail[0].SkillsDataList})
             })
     }
 
@@ -74,7 +81,7 @@ export default class Career extends Component {
         let skillsList = this.state.skills.map(skill => {
             return(
                 <div>
-                    {skill.Content}
+                    <p><strong>{skill.ElementName}</strong> - {skill.ElementDescription}</p>
                 </div>
             )
         })
@@ -93,14 +100,12 @@ export default class Career extends Component {
                 <h2>{this.state.career.career_field} in {this.state.career.state}</h2>
                 <input type="submit" value="Delete Career" onClick={this.deleteCareer} />
                 <h3>Description</h3>
-                {/* <p>{this.state.career.description}</p> */}
                 <p>{this.state.description}</p>
                 <h3>Skills</h3>
                 {skillsList}
                 <h3>Education</h3>
                 {certificationList}
                 <h3>Mentors</h3>
-                {/* <Link to="/mentors/new">Add a Mentor</Link> */}
                 <NewMentorForm match={this.props.match}/>
                 {mentorList}
             </div>
