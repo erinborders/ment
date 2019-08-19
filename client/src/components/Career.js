@@ -2,8 +2,13 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import NewMentorForm from './NewMentorForm'
 import axios from 'axios'
+import GridList from '@material-ui/core/Gridlist'
+import GridListTile from '@material-ui/core/GridListTile'
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import Theme from '../Theme'
 
 export default class Career extends Component {
+    
     state = {
         career: {
             onetcode: '',
@@ -63,6 +68,8 @@ export default class Career extends Component {
     }
 
     render() {
+        // const classes = useStyles();
+
         if(this.state.redirectToHome) {
             return <Redirect to="/" />
         }
@@ -80,35 +87,67 @@ export default class Career extends Component {
 
         let skillsList = this.state.skills.map(skill => {
             return(
-                <div>
+                <GridListTile >
                     <p><strong>{skill.ElementName}</strong> - {skill.ElementDescription}</p>
-                </div>
+                </GridListTile>
             )
         })
 
         let certificationList = this.state.education.map(certification => {
             return(
-                <div>
-                    {certification.Content}
-                </div>
+                <GridListTile>
+                    <p>{certification.Content}</p>
+                </GridListTile>
             )
         })
 
         return (
-            
-            <div>
+        <MuiThemeProvider theme={Theme}>
+            <div className="career-container" >
                 <h2>{this.state.career.career_field} in {this.state.career.state}</h2>
                 <input type="submit" value="Delete Career" onClick={this.deleteCareer} />
                 <h3>Description</h3>
                 <p>{this.state.description}</p>
-                <h3>Skills</h3>
-                {skillsList}
-                <h3>Education</h3>
-                {certificationList}
+                <div className="skills-education-container">
+                    <div className="career-skills-container">
+                        <h3>Skills</h3>
+                            <GridList 
+                            cellHeight={60} 
+                            cols={1}
+                            style={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                justifyContent: 'space-around',
+                                overflowY: 'scroll',
+                                width: 500,
+                                height: 450,
+                            }} >
+                                {skillsList}
+                            </GridList>
+                        </div>
+                    
+                    <div className="career-education-container">
+                        <h3>Education</h3>
+                        <GridList 
+                            cellHeight={40} 
+                            cols={1}
+                            style={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                justifyContent: 'space-around',
+                                overflowY: 'scroll',
+                                width: 500,
+                                height: 450,
+                            }} >
+                                {certificationList}
+                            </GridList>
+                    </div>
+                </div>
                 <h3>Mentors</h3>
                 <NewMentorForm match={this.props.match}/>
                 {mentorList}
             </div>
+        </MuiThemeProvider>
         )
     }
 }

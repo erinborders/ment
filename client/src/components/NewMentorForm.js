@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 export default class NewMentorForm extends Component {
     state = {
@@ -40,56 +42,69 @@ export default class NewMentorForm extends Component {
 
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="mentor-name">Name: </label>
-                    <input
+                <form onSubmit={this.handleSubmit} noValidate autoComplete="off">
+                    <div>
+                    <TextField
                         id="mentor-name"
-                        type="text"
+                        label="Name"
                         name="name"
+                        margin="normal"
+                        variant="outlined"
                         onChange={this.handleChange}
                         value={this.state.newMentor.name} />
 
-                    <label htmlFor="mentor-profession">Profession: </label>
-                    <input
+                    <TextField
                         id="mentor-profession"
-                        type="text"
+                        label="Profession"
                         name="profession"
+                        margin="normal"
+                        variant="outlined"
                         onChange={this.handleChange}
                         value={this.state.newMentor.profession} />
+                    </div>
 
-                    <label htmlFor="mentor-advice">Advice Topics: </label>
-                    <input
-                        id="mentor-advice"
-                        type="text"
-                        name="advice_topics"
-                        onChange={this.handleChange}
-                        value={this.state.newMentor.advice_topics} />
+                    <div>
+                        <TextField
+                            id="mentor-advice"
+                            label="Can Give Advice On"
+                            name="advice_topics"
+                            margin="normal"
+                            variant="outlined"
+                            onChange={this.handleChange}
+                            value={this.state.newMentor.advice_topics} />
 
-                    <label htmlFor="mentor-image">Profile Picture: </label>
-                    <input
-                        id="mentor-image"
-                        type="text"
-                        name="image_url"
-                        onChange={this.handleChange}
-                        value={this.state.newMentor.image_url} />
+                        <TextField
+                            id="mentor-image"
+                            label="Picture Url"
+                            name="image_url"
+                            margin="normal"
+                            variant="outlined"
+                            onChange={this.handleChange}
+                            value={this.state.newMentor.image_url} />
+                    </div>
 
-                    <label htmlFor="mentor-company">Company: </label>
-                    <input
-                        id="mentor-company"
-                        type="text"
-                        name="company"
-                        onChange={this.handleChange}
-                        value={this.state.newMentor.company} />
+                    <div>
+                    <TextField
+                            id="mentor-company"
+                            label="Company"
+                            name="company"
+                            margin="normal"
+                            variant="outlined"
+                            onChange={this.handleChange}
+                            value={this.state.newMentor.company} />
 
-                    <label htmlFor="mentor-email">Email: </label>
-                    <input
-                        id="mentor-email"
-                        type="text"
-                        name="email"
-                        onChange={this.handleChange}
-                        value={this.state.newMentor.email} />
-
-                    <input type="submit" value="Add Mentor" />
+                    <TextField
+                            id="mentor-email"
+                            label="Email"
+                            name="email"
+                            margin="normal"
+                            variant="outlined"
+                            onChange={this.handleChange}
+                            value={this.state.newMentor.email} />
+                    </div>
+                
+                    {/* <input type="submit" value="Add Mentor" /> */}
+                    <Button variant="outlined" type="submit">Add Mentor</Button>
                 </form>
             </div>
         )
