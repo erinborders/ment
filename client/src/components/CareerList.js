@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Paper from '@material-ui/core/Paper'
+import Container from '@material-ui/core/Container'
 
 export default class CareerList extends Component {
     state = {
@@ -28,11 +30,13 @@ export default class CareerList extends Component {
         })
 
         return (
-            <div>
-                <h1>Career List</h1>
-                <Link to="/careers/new">Add Career</Link>
-                {careerList}
-            </div>
+            <Container>
+                <Paper>
+                    <h1>Career List</h1>
+                    <Link to="/careers/new">Add Career</Link>
+                    {careerList}
+                </Paper>
+            </Container>
         )
     }
 }

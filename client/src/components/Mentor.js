@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import NewPostForm from './NewPostForm'
 import axios from 'axios'
+import { Card, CardContent, CardMedia, Container, Paper, TextField, Button } from '@material-ui/core'
 
 export default class Mentor extends Component {
     state = {
@@ -74,74 +75,112 @@ export default class Mentor extends Component {
         })
 
         return (
-            <div>
-                <img src={this.state.mentor.image_url} alt={`${this.state.mentor.name}`} />
-                <h2>{this.state.mentor.name}</h2>
-                <p>{this.state.mentor. profession}</p>
-                <p>{this.state.mentor.advice_topics}</p>
+            <Container>
+                <Paper>
+
+                <div style={{display: 'flex', justifyContent: 'center'}} >
+                    <Card style={{maxWidth: 645, minHeight: 275, display: 'flex', flexDirection: 'wrap'}} >
+                        <div style={{maxWidth: 200, display: 'flex', alignItems: 'center'}}>
+                            <CardMedia
+                                height="140"
+                                component="img"
+                                image={this.state.mentor.image_url}
+                                alt={`${this.state.mentor.name}`}
+                                title={`${this.state.mentor.name}`}
+                                style={{objectFit: 'contain'}} 
+                                />
+                         </div>
+                         <div style={{minWidth: 300}}>
+                            <CardContent  >
+                                <h2>{this.state.mentor.name}</h2>
+                                <p><strong>Profession:</strong> {this.state.mentor.profession}</p>
+                                <p><strong>Employer:</strong> {this.state.mentor.company}</p>
+                                <p><strong>Can Give Advice On:</strong> {this.state.mentor.advice_topics}</p>
+                                <a href={`mailto:${this.state.mentor.email}`}>Contact</a>
+                            </CardContent>
+                         </div>
+                    </Card>
+                </div>
 
                 {
                     this.state.isEditFormDisplayed ?
                     <div>
                         <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="mentor-name">Name: </label>
-                    <input
-                        id="mentor-name"
-                        type="text"
-                        name="name"
-                        onChange={this.handleChange}
-                        value={this.state.newMentor.name} />
+                            <div>
+                                <TextField
+                                    id="mentor-name"
+                                    label="Name" 
+                                    name="name"
+                                    margin="normal"
+                                    variant="outlined"
+                                    onChange={this.handleChange}
+                                    value={this.state.newMentor.name} />
 
-                    <label htmlFor="mentor-profession">Profession: </label>
-                    <input
-                        id="mentor-profession"
-                        type="text"
-                        name="profession"
-                        onChange={this.handleChange}
-                        value={this.state.newMentor.profession} />
+                                <TextField
+                                    id="mentor-profession"
+                                    label="Profession"
+                                    name="profession"
+                                    margin="normal"
+                                    variant="outlined"
+                                    onChange={this.handleChange}
+                                    value={this.state.newMentor.profession}
+                                     />
+                            </div>
 
-                    <label htmlFor="mentor-advice">Advice Topics: </label>
-                    <input
-                        id="mentor-advice"
-                        type="text"
-                        name="advice_topics"
-                        onChange={this.handleChange}
-                        value={this.state.newMentor.advice_topics} />
+                            <div>
+                                <TextField
+                                    id="mentor-advice"
+                                    label="Can Give Advice On"
+                                    name="advice_topics"
+                                    margin="normal"
+                                    variant="outlined"
+                                    onChange={this.handleChange}
+                                    value={this.state.newMentor.advice_topics} />
 
-                    <label htmlFor="mentor-image">Profile Picture: </label>
-                    <input
-                        id="mentor-image"
-                        type="text"
-                        name="image_url"
-                        onChange={this.handleChange}
-                        value={this.state.newMentor.image_url} />
+                                <TextField
+                                    id="mentor-image"
+                                    label="Profile Picture"
+                                    name="image_url"
+                                    margin="normal"
+                                    variant="outlined"
+                                    onChange={this.handleChange}
+                                    value={this.state.newMentor.image_url} />
+                            </div>
 
-                    <label htmlFor="mentor-company">Company: </label>
-                    <input
-                        id="mentor-company"
-                        type="text"
-                        name="company"
-                        onChange={this.handleChange}
-                        value={this.state.newMentor.company} />
+                            <div>
+                                <TextField
+                                    id="mentor-company"
+                                    label="Employer"
+                                    name="company"
+                                    margin="normal"
+                                    variant="outlined"
+                                    onChange={this.handleChange}
+                                    value={this.state.newMentor.company} />
 
-                    <label htmlFor="mentor-email">Email: </label>
-                    <input
-                        id="mentor-email"
-                        type="text"
-                        name="email"
-                        onChange={this.handleChange}
-                        value={this.state.newMentor.email} />
+                                <TextField
+                                    id="mentor-email"
+                                    label="Email"
+                                    name="email"
+                                    margin="normal"
+                                    variant="outlined"
+                                    onChange={this.handleChange}
+                                    value={this.state.newMentor.email} />
+                            </div>
 
-                    <input type="submit" value="Add Mentor" />
+                            <div>
+                                <Button variant="outlined" type="submit">Edit Mentor</Button>
+                            </div>
+
                 </form>
-                </div> : <input type="submit" value="Edit" onClick={this.toggleEditForm} />
+                </div> : <Button type="submit" onClick={this.toggleEditForm}>Edit</Button>
                 }
 
                 <input type="submit" value="Delete Mentor" onClick={this.deleteMentor} />
                 <h1>Blog Posts</h1>
                 <NewPostForm match={this.props.match} />
                     {postList}
-            </div>
+                </Paper>
+            </Container>
         )
     }
 }
