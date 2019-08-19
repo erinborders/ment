@@ -2,8 +2,17 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import NewMentorForm from './NewMentorForm'
 import axios from 'axios'
+import GridList from '@material-ui/core/Gridlist'
+import GridListTile from '@material-ui/core/GridListTile'
+import Container from '@material-ui/core/Container'
+import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
+import CardMedia from '@material-ui/core/CardMedia'
+import CardContent from '@material-ui/core/CardContent'
+import Paper from '@material-ui/core/Paper'
 
 export default class Career extends Component {
+    
     state = {
         career: {
             onetcode: '',
@@ -13,7 +22,8 @@ export default class Career extends Component {
         description: '',
         skills: [],
         education: [],
-        redirectToHome: false
+        redirectToHome: false,
+        isMentorFormDisplayed: false
     }
 
     componentDidMount(){
@@ -62,53 +72,121 @@ export default class Career extends Component {
             })
     }
 
+    toggleAddMentorForm = (evt) => {
+        this.setState({
+            isMentorFormDisplayed: !this.state.isMentorFormDisplayed
+        })
+    }
+
     render() {
+        // const classes = useStyles();
+
         if(this.state.redirectToHome) {
             return <Redirect to="/" />
         }
 
         let mentorList = this.state.career.mentors.map(mentor => {
             return(
-                <div key={mentor.id}>
-                    <img src={mentor.image_url} alt={`${mentor.name}`} />
-                    <Link to={`/mentors/${mentor.id}`}>{mentor.name}</Link>
-                    <p>{mentor.profession}</p>
-                    <p>{mentor.company}</p>
-                </div>
+                <Card key={mentor.id} style={{maxWidth: 345, minHeight: 275}} >
+                    <CardMedia
+                        component="img"
+                        alt={`${mentor.name}`}
+                        height="140"
+                        image={mentor.image_url}
+                        title={`${mentor.name}`}
+                        style={{objectFit: "contain"}}
+                         />
+                    <CardContent>
+                        <Link to={`/mentors/${mentor.id}`}>{mentor.name}</Link>
+                        <p>{mentor.profession}</p>
+                        <p>{mentor.company}</p>
+                    </CardContent>
+                </Card>
             )
         })
 
         let skillsList = this.state.skills.map(skill => {
             return(
-                <div>
+                <GridListTile >
                     <p><strong>{skill.ElementName}</strong> - {skill.ElementDescription}</p>
-                </div>
+                </GridListTile>
             )
         })
 
         let certificationList = this.state.education.map(certification => {
             return(
-                <div>
-                    {certification.Content}
-                </div>
+                <GridListTile>
+                    <p>{certification.Content}</p>
+                </GridListTile>
             )
         })
 
         return (
             
-            <div>
+            <Container className="career-container" >
+                <Paper>
                 <h2>{this.state.career.career_field} in {this.state.career.state}</h2>
-                <input type="submit" value="Delete Career" onClick={this.deleteCareer} />
+                <Button variant="outlined" color="secondary" type="submit" onClick={this.deleteCareer}>Delete Career</Button>
+                
                 <h3>Description</h3>
                 <p>{this.state.description}</p>
-                <h3>Skills</h3>
-                {skillsList}
-                <h3>Education</h3>
-                {certificationList}
-                <h3>Mentors</h3>
-                <NewMentorForm match={this.props.match}/>
-                {mentorList}
-            </div>
+                <div className="skills-education-container">
+                    <div className="career-skills-container">
+                        <h3>Skills</h3>
+                            <GridList 
+                            cellHeight={60} 
+                            cols={1}
+                            style={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                justifyContent: 'space-around',
+                                overflowY: 'scroll',
+                                width: 500,
+                                height: 450,
+                            }} >
+                                {skillsList}
+                            </GridList>
+                        </div>
+                    
+                    <div className="career-education-container">
+                        <h3>Education</h3>
+                        <GridList 
+                            cellHeight={40} 
+                            cols={1}
+                            style={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                justifyContent: 'space-around',
+                                overflowY: 'scroll',
+                                width: 500,
+                                height: 450,
+                            }} >
+                                {certificationList}
+                            </GridList>
+                    </div>
+                </div>
+                
+                    <h3>Mentors</h3>
+                {/* TO DO: ADD MENTOR FORM TOGGLE */}
+                        {
+                            this.state.isMentorFormDisplayed ?
+                            <NewMentorForm match={this.props.match}/> :
+                            <Button variant="outlined" onClick={this.toggleAddMentorForm}>Add Mentor</Button>
+                        }
+                
+                        <GridList
+                            style={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                justifyContent: 'start',
+                                overflowX: 'scroll',
+                                height: 300,
+                            }} >
+                                {mentorList}
+                            </GridList>
+                            </Paper>
+            </Container>
+        
         )
     }
 }

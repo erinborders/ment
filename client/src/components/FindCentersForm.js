@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Paper from '@material-ui/core/Paper'
+import { Container } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 export default class FindCentersForm extends Component {
     state = {
@@ -77,57 +81,68 @@ export default class FindCentersForm extends Component {
         })
 
         return (
-            <div>
+            <Container>
+                <Paper>
+
                 <div className="youth-center-search">
                     <h2>Nearby Youth Job Programs</h2>
                     <form onSubmit={this.handleSubmit}>
-                        <label htmlFor="youth-program-location">Location: </label>
-                        <input
-                            id="youth-program-location"
-                            type="text"
-                            name="location"
-                            placeholder="Zipcode"
-                            onChange={this.handleChange}
-                            value={this.state.youthProgram.location} />
+                        
+                    <TextField
+                        id="youth-program-location"
+                        label="Zipcode"
+                        name="location"
+                        margin="normal"
+                        variant="outlined"
+                        onChange={this.handleChange}
+                        value={this.state.youthProgram.location} />
 
-                        <label htmlFor="youth-program-distance">Distance: </label>
-                        <input
-                            id="youth-program-distance"
-                            type="text"
-                            name="radius"
-                            placeholder="Miles"
-                            onChange={this.handleChange}
-                            value={this.state.youthProgram.radius} />
+                    <TextField
+                        id="youth-program-distance"
+                        label="Distance"
+                        name="radius"
+                        margin="normal"
+                        variant="outlined"
+                        onChange={this.handleChange}
+                        value={this.state.youthProgram.radius} />
 
-                        <input type="submit" value="Find Youth Programs" />
+                        <div>
+                            <Button variant="outlined" color="secondary" type="submit">Find Youth Programs</Button>
+                        </div>
                     </form>
+
                     {
                         this.state.hasSearchedYouthPrograms ?
                         programList : null
                     }
+
                 </div>
                 
                 <div className="job-center-search">
                     <h2>Nearby American Job Centers</h2>
                     <form onSubmit={this.handleJobSearchSubmit}>
-                        <label htmlFor="job-center-location">Location: </label>
-                        <input
-                            id="job-center-location"
-                            type="text"
-                            name="location"
-                            placeholder="Zipcode"
-                            onChange={this.handleJobSearchChange}
-                            value={this.state.jobCenter.location} />
 
-                        <label htmlFor="job-center-distance">Distance: </label>
-                        <input
-                            id="job-center-distance"
-                            type="text"
-                            name="radius"
-                            onChange={this.handleJobSearchChange}
-                            value={this.state.jobCenter.radius} />
+                    <TextField
+                        id="job-center-location"
+                        label="Zipcode"
+                        name="location"
+                        margin="normal"
+                        variant="outlined"
+                        onChange={this.handleJobSearchChange}
+                        value={this.state.jobCenter.location} />
 
-                        <input type="submit" value="Find Job Centers" />
+                    <TextField
+                        id="job-center-location"
+                        label="Distance"
+                        name="radius"
+                        margin="normal"
+                        variant="outlined"
+                        onChange={this.handleJobSearchChange}
+                        value={this.state.jobCenter.radius} />
+
+                        <div>
+                            <Button variant="outlined" color="secondary" type="submit">Find Job Centers</Button>
+                        </div>
                     </form>
 
                     {
@@ -136,7 +151,8 @@ export default class FindCentersForm extends Component {
                     }
                 </div>
 
-            </div>
+                    </Paper>
+            </Container>
         )
     }
 }

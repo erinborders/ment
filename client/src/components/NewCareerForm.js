@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Container from '@material-ui/core/Container'
+import Paper from '@material-ui/core/Paper'
 
 export default class NewCareerForm extends Component {
     state = {
@@ -36,77 +40,59 @@ export default class NewCareerForm extends Component {
         }
 
         return (
-            <div>
-                <a href="https://www.onetcodeconnector.org/find/result">Find OnetCodes</a>
+            <Container>
+                <Paper>
+
                 <h2>New Career Form</h2>
+                <a href="https://www.onetcodeconnector.org/find/result">Find Onet Codes</a>
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="career-field">Career Field: </label>
-                    <input
-                        id="career-field"
-                        type="text"
-                        name="career_field"
-                        onChange={this.handleChange}
-                        value={this.state.newCareer.career_field} />
+                    <div>
+                        <TextField
+                            id="career-field"
+                            label="Career"
+                            name="career_field"
+                            margin="normal"
+                            variant="outlined"
+                            onChange={this.handleChange}
+                            value={this.state.newCareer.career_field} />
 
-                    <label htmlFor="career-occupations">Career Occupations: </label>
-                    <input
-                        id="career-occupations"
-                        type="text"
-                        name="occupations"
-                        onChange={this.handleChange}
-                        value={this.state.newCareer.occupations} />
+                        <TextField
+                            id="career-occupations"
+                            label="Industry"
+                            name="occupations"
+                            margin="normal"
+                            variant="outlined"
+                            onChange={this.handleChange}
+                            value={this.state.newCareer.occupations} />
+                    </div>
 
-                    <label htmlFor="career-onetcode">Career OnetCode: </label>
-                    <input
-                        id="career-onetcode"
-                        type="text"
-                        name="onetcode"
-                        onChange={this.handleChange}
-                        value={this.state.newCareer.onetcode} />
+                    <div>
+                        <TextField
+                            id="career-onetcode"
+                            label="Onet Code"
+                            name="onetcode"
+                            margin="normal"
+                            variant="outlined"
+                            onChange={this.handleChange}
+                            value={this.state.newCareer.onetcode} />
 
-                    <label htmlFor="career-state">State: </label>
-                    <input 
-                        id="career-state"
-                        type="text"
-                        name="state"
-                        onChange={this.handleChange}
-                        value={this.state.newCareer.state} />
+                        <TextField
+                            id="career-state"
+                            label="State Abbreviation"
+                            name="state"
+                            margin="normal"
+                            variant="outlined"
+                            onChange={this.handleChange}
+                            value={this.state.newCareer.state} />
+                    </div>
 
-                    {/* <label htmlFor="career-skills">Career Skills: </label>
-                    <input
-                        id="career-skills"
-                        type="text"
-                        name="skills"
-                        onChange={this.handleChange}
-                        value={this.state.newCareer.skills} />
-
-                    <label htmlFor="career-education">Education: </label>
-                    <input
-                        id="career-education"
-                        type="text"
-                        name="education"
-                        onChange={this.handleChange}
-                        value={this.state.newCareer.education} />
-
-                    <label htmlFor="career-employers">Employers: </label>
-                    <input
-                        id="career-employers"
-                        type="text"
-                        name="employers"
-                        onChange={this.handleChange}
-                        value={this.state.newCareer.employers} />
-
-                    <label htmlFor="career-data">Job Data: </label>
-                    <input
-                        id="career-data"
-                        type="text"
-                        name="job_data"
-                        onChange={this.handleChange}
-                        value={this.state.newCareer.job_data} /> */}
-
-                    <input type="submit" value="Add New Career" />
+                    <div>
+                        <Button variant="outlined" type="submit">Add New Career</Button>
+                    </div>
+                    
                 </form>
-            </div>
+                </Paper>
+            </Container>
         )
     }
 }
