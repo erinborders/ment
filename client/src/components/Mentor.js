@@ -43,7 +43,7 @@ export default class Mentor extends Component {
 
     // edit mentor form
     handleChange = (evt) => {
-        let editedMentor = {...this.state.editedMentor}
+        let editedMentor = {...this.state.mentor}
         editedMentor[evt.target.name] = evt.target.value
 
         this.setState({mentor: editedMentor})
@@ -90,7 +90,7 @@ export default class Mentor extends Component {
                                 style={{objectFit: 'contain'}} 
                                 />
                          </div>
-                         <div style={{minWidth: 300}}>
+                        <div style={{minWidth: 300}}>
                             <CardContent  >
                                 <h2>{this.state.mentor.name}</h2>
                                 <p><strong>Profession:</strong> {this.state.mentor.profession}</p>
@@ -103,77 +103,72 @@ export default class Mentor extends Component {
                 </div>
 
                 {
-                    this.state.isEditFormDisplayed ?
-                    <div>
-                        <form onSubmit={this.handleSubmit}>
+                    this.state.isEditFormShowing ?
+
+                    
+                    <form onSubmit={this.handleSubmit}>
                             <div>
                                 <TextField
                                     id="mentor-name"
-                                    label="Name" 
                                     name="name"
                                     margin="normal"
                                     variant="outlined"
                                     onChange={this.handleChange}
-                                    value={this.state.newMentor.name} />
+                                    value={this.state.mentor.name} />
 
                                 <TextField
                                     id="mentor-profession"
-                                    label="Profession"
                                     name="profession"
                                     margin="normal"
                                     variant="outlined"
                                     onChange={this.handleChange}
-                                    value={this.state.newMentor.profession}
-                                     />
+                                    value={this.state.mentor.profession}
+                                    />
                             </div>
 
                             <div>
                                 <TextField
                                     id="mentor-advice"
-                                    label="Can Give Advice On"
                                     name="advice_topics"
                                     margin="normal"
                                     variant="outlined"
                                     onChange={this.handleChange}
-                                    value={this.state.newMentor.advice_topics} />
+                                    value={this.state.mentor.advice_topics} />
 
                                 <TextField
                                     id="mentor-image"
-                                    label="Profile Picture"
                                     name="image_url"
                                     margin="normal"
                                     variant="outlined"
                                     onChange={this.handleChange}
-                                    value={this.state.newMentor.image_url} />
+                                    value={this.state.mentor.image_url} />
                             </div>
 
                             <div>
                                 <TextField
                                     id="mentor-company"
-                                    label="Employer"
                                     name="company"
                                     margin="normal"
                                     variant="outlined"
                                     onChange={this.handleChange}
-                                    value={this.state.newMentor.company} />
+                                    value={this.state.mentor.company} />
 
                                 <TextField
                                     id="mentor-email"
-                                    label="Email"
                                     name="email"
                                     margin="normal"
                                     variant="outlined"
                                     onChange={this.handleChange}
-                                    value={this.state.newMentor.email} />
+                                    value={this.state.mentor.email} />
                             </div>
 
                             <div>
                                 <Button variant="outlined" type="submit">Edit Mentor</Button>
-                            </div>
+                            </div> 
 
-                </form>
-                </div> : <Button type="submit" onClick={this.toggleEditForm}>Edit</Button>
-                }
+                </form> : <Button variant="outlined" onClick={this.toggleEditForm}>Edit</Button>
+               
+            }
 
                 <input type="submit" value="Delete Mentor" onClick={this.deleteMentor} />
                 <h1>Blog Posts</h1>
