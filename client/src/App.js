@@ -10,6 +10,9 @@ import './App.css';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Theme from './Theme'
 import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+// import IconButton from '@material-ui/core/IconButton'
+// import MenuIcon from '@material-ui/icons/Menu'
 
 function App() {
   return (
@@ -17,13 +20,14 @@ function App() {
       <div className="App">
         <MuiThemeProvider theme={Theme}>
         <Router>
-        <AppBar position="static">
-          <div>
-            <h1>MenT</h1>
-            <Link to="/">Careers</Link>
-            <Link to="/search">Job Centers Near You</Link>
-          </div>
-        </AppBar>
+          <AppBar position="static">
+            <Toolbar style={{display: 'flex', justifyContent: 'space-between'}}>
+                <Link style={{textDecoration: 'none', color: 'white'}} to="/"><h1>MenT</h1></Link>
+              <div className="job-center-link">
+                <Link style={{textDecoration: 'none', color: 'white'}} to="/search">Job Centers Near You</Link>
+              </div>
+            </Toolbar>
+          </AppBar>
         <Switch>
           <Route exact path="/" component={CareerList} />
           <Route path="/careers/new" component={NewCareerForm} />

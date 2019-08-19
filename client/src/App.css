@@ -1,6 +1,14 @@
+body {
+  background-image: url(./img/office.jpg);
+  background-color: rgba(80, 129, 168, 0.719);
+  background-blend-mode: lighten;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .App {
   text-align: center;
+  
 }
 
 /* .career-container {
