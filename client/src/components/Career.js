@@ -2,14 +2,7 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import NewMentorForm from './NewMentorForm'
 import axios from 'axios'
-import GridList from '@material-ui/core/GridList'
-import GridListTile from '@material-ui/core/GridListTile'
-import Container from '@material-ui/core/Container'
-import Button from '@material-ui/core/Button'
-import Card from '@material-ui/core/Card'
-import CardMedia from '@material-ui/core/CardMedia'
-import CardContent from '@material-ui/core/CardContent'
-import Paper from '@material-ui/core/Paper'
+import { Button, Card, CardContent, CardMedia, Collapse, Container, FormControlLabel, Switch, GridList, GridListTile, Paper } from '@material-ui/core'
 
 export default class Career extends Component {
     
@@ -168,12 +161,16 @@ export default class Career extends Component {
                 </div>
                 <hr className="break"/>
                     <h3>Mentors</h3>
-                {/* TO DO: ADD MENTOR FORM TOGGLE */}
-                        {
-                            this.state.isMentorFormDisplayed ?
-                            <NewMentorForm match={this.props.match}/> :
-                            <Button variant="outlined" onClick={this.toggleAddMentorForm}>Add Mentor</Button>
-                        }
+               
+
+                    <FormControlLabel
+                        control={<Switch checked={this.state.isMentorFormDisplayed} onChange={this.toggleAddMentorForm} />}
+                        label="Create a Mentor" />
+                   
+                    <Collapse in={this.state.isMentorFormDisplayed}>
+                         <NewMentorForm match={this.props.match}/> 
+                    </Collapse> 
+                         
 
                     <Container className="content-container">
                         <GridList
