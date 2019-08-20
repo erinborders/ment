@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import { Button, Container, TextField } from '@material-ui/core'
 
 export default class NewPostForm extends Component {
     state = {
@@ -39,39 +40,59 @@ export default class NewPostForm extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="post-title">Post Title: </label>
-                    <input
-                       id="post-title"
-                       type="text"
-                       name="title"
-                       onChange={this.handleChange}
-                       value={this.state.newBlogPost.title}  />
+                {/* TO DO: ADD SPACING BETWEEN FORM INPUT FIELDS */}
+                    <div>
+                    <TextField
+                        id="post-title"
+                        label="Title"
+                        name="title"
+                        margin="normal"
+                        variant="outlined"
+                        onChange={this.handleChange}
+                        value={this.state.newBlogPost.title} />
 
-                    <label htmlFor="post-date">Date: </label>
-                    <input
-                       id="post-date"
-                       type="text"
-                       name="date"
-                       onChange={this.handleChange}
-                       value={this.state.newBlogPost.date}  />
+                    <TextField
+                        id="post-date"
+                        label="Date"
+                        name="date"
+                        margin="normal"
+                        variant="outlined"
+                        onChange={this.handleChange}
+                        value={this.state.newBlogPost.date} />
 
-                    <label htmlFor="post-description">Post Description: </label>
-                    <input
-                       id="post-description"
-                       type="text"
-                       name="description"
-                       onChange={this.handleChange}
-                       value={this.state.newBlogPost.description}  />
+                    </div>
+                    <Container>
 
-                    <label htmlFor="post-body">Post Body: </label>
-                    <input
-                       id="post-body"
-                       type="text"
-                       name="body"
-                       onChange={this.handleChange}
-                       value={this.state.newBlogPost.body}  />
+                    <TextField
+                        id="post-description"
+                        label="Description"
+                        name="description"
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                        onChange={this.handleChange}
+                        value={this.state.newBlogPost.description} />
+                    </Container>
+                    <Container>
 
-                    <input type="submit" value="Add Post" />
+                    <TextField
+                        id="post-body"
+                        label="How was your day?"
+                        name="body"
+                        margin="normal"
+                        multiline="true"
+                        rows="20"
+                        fullWidth
+                        variant="outlined"
+                        onChange={this.handleChange}
+                        value={this.state.newBlogPost.body} />
+
+                    </Container>
+                    <div>
+
+                    <Button variant="outlined" color="secondary" type="submit" >Publish</Button>
+                    </div>
+                    
                 </form>
             </div>
         )

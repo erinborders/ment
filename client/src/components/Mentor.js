@@ -61,6 +61,7 @@ export default class Mentor extends Component {
     
     render() {
         // TO DO: MAKE THIS REDIRECT TO CAREER PAGE
+        // try using hashhistory or browserhistory (imported from react router)
         if(this.state.redirectToHome) {
             return <Redirect to="/" />
         }
@@ -77,7 +78,7 @@ export default class Mentor extends Component {
         return (
             <Container>
                 <Paper>
-
+                {/* Mentor's profile and information */}
                 <div style={{display: 'flex', justifyContent: 'center'}} >
                     <Card style={{maxWidth: 645, minHeight: 275, display: 'flex', flexDirection: 'wrap'}} >
                         <div style={{maxWidth: 200, display: 'flex', alignItems: 'center'}}>
@@ -163,14 +164,17 @@ export default class Mentor extends Component {
                             </div>
 
                             <div>
-                                <Button variant="outlined" type="submit">Edit Mentor</Button>
+                                <Button variant="outlined" color="secondary" type="submit">Edit Mentor</Button>
                             </div> 
 
-                </form> : <Button variant="outlined" onClick={this.toggleEditForm}>Edit</Button>
+                </form> : 
+                // TO DO: CHANGE THIS INTO A TOGGLE SHOW
+                <Button variant="outlined" color="secondary" onClick={this.toggleEditForm}>Edit</Button>
                
             }
 
-                <input type="submit" value="Delete Mentor" onClick={this.deleteMentor} />
+                <Button variant="outlined" color="secondary" type="submit" onClick={this.deleteMentor} >Delete</Button>
+                
                 <h1>Blog Posts</h1>
                 <NewPostForm match={this.props.match} />
                     {postList}

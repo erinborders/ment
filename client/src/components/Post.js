@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import { Button, Container, Paper, TextField } from '@material-ui/core'
 
 export default class Post extends Component {
     state = {
@@ -16,7 +17,6 @@ export default class Post extends Component {
     fetchPost = () => {
         axios.get(`/api/v1/blogposts/${this.props.match.params.id}/`)
             .then(blogPost => {
-                console.log(blogPost.data)
                 this.setState({blogPost: blogPost.data})
             })
     }
@@ -47,6 +47,9 @@ export default class Post extends Component {
         evt.preventDefault()
 
         axios.put(`/api/v1/blogposts/${this.props.match.params.id}/`, this.state.blogPost)
+            .then(() => {
+                this.setState({redirectToHome: true})
+            })
     }
 
 
@@ -57,9 +60,12 @@ export default class Post extends Component {
         }
 
         return (
-            <div>
-                <input type="submit" value="Delete Post" onClick={this.deletePost} />
+            <Container>
+                <Paper>
+
                 <h1>{this.state.blogPost.title}</h1>
+                <Button variant="outlined" color="secondary" type="submit" onClick={this.deletePost}>Delete</Button>
+                
                     <p>{this.state.blogPost.date}</p>
                 <h3>{this.state.blogPost.description}</h3>
                     <p>{this.state.blogPost.body}</p>
@@ -67,54 +73,70 @@ export default class Post extends Component {
                 {
                     this.state.isEditFormShowing ?
                     // edit form
-                    // TO DO: CHANGE TO BOOTSTRAP FORM
+                    
                     // TO DO: PUT IN ITS OWN COMPONENT
                     <div className="edit-form">
                         <h2>Edit Form</h2> 
                         <form onSubmit={this.handleSubmit}>
-                            <label htmlFor="post-title">Title: </label>
-                            <input
-                                id="post-title"
-                                type="text"
-                                name="title"
-                                onChange={this.handleChange}
-                                value={this.state.blogPost.title}
-                                 />
+                {/* TO DO: ADD SPACING BETWEEN FORM INPUT FIELDS */}
+                    <div>
+                    <TextField
+                        id="post-title"
+                        label="Title"
+                        name="title"
+                        margin="normal"
+                        variant="outlined"
+                        onChange={this.handleChange}
+                        value={this.state.blogPost.title} />
 
-                            <label htmlFor="post-date">Date: </label>
-                            <input
-                                id="post-date"
-                                type="text"
-                                name="date"
-                                onChange={this.handleChange}
-                                value={this.state.blogPost.date}
-                                 />
+                    <TextField
+                        id="post-date"
+                        label="Date"
+                        name="date"
+                        margin="normal"
+                        variant="outlined"
+                        onChange={this.handleChange}
+                        value={this.state.blogPost.date} />
 
-                            <label htmlFor="post-description">Description: </label>
-                            <input
-                                id="post-description"
-                                type="text"
-                                name="description"
-                                onChange={this.handleChange}
-                                value={this.state.blogPost.description}
-                                 />
-
-                            <label htmlFor="post-body">Body: </label>
-                            <input
-                                id="post-body"
-                                type="text"
-                                name="body"
-                                onChange={this.handleChange}
-                                value={this.state.blogPost.body}
-                                 />
-
-                            <input type="submit" value="Edit Post" />
-                        </form>
                     </div>
+                    <Container>
 
-                    : <input type="submit" value="Edit Post" onClick={this.toggleEditForm} />
-                }
-            </div>
+                    <TextField
+                        id="post-description"
+                        label="Description"
+                        name="description"
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                        onChange={this.handleChange}
+                        value={this.state.blogPost.description} />
+                    </Container>
+                    <Container>
+
+                    <TextField
+                        id="post-body"
+                        label="How was your day?"
+                        name="body"
+                        margin="normal"
+                        multiline
+                        rows="20"
+                        fullWidth
+                        variant="outlined"
+                        onChange={this.handleChange}
+                        value={this.state.blogPost.body} />
+
+                    </Container>
+                    <div>
+
+                    <Button variant="outlined" color="secondary" type="submit" >Publish Changes</Button>
+                    </div>
+                    </form>
+                    </div>: <Button variant="outlined" color="secondary" type="submit" onClick={this.toggleEditForm} >Edit Post</Button>
+               
+            }
+                  
+            </Paper>
+            </Container>
         )
     }
 }
