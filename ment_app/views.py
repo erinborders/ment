@@ -86,4 +86,5 @@ def get_job_skills(request):
         print('Nothing returned')
     else:
         print(r)
-    return JsonResponse(r, safe=False)
+    # return JsonResponse(r, safe=False)
+    return r
