@@ -6,7 +6,6 @@ import { Button, Container, Paper, TextField } from '@material-ui/core'
 export default class Post extends Component {
     state = {
         blogPost: {},
-        redirectToHome: false,
         isEditFormShowing: false
     }
 
@@ -26,7 +25,7 @@ export default class Post extends Component {
 
         axios.delete(`/api/v1/blogposts/${this.props.match.params.id}/`)
             .then(() => {
-                this.setState({redirectToHome: true})
+                this.props.history.goBack()
             })
     }
 
@@ -48,16 +47,13 @@ export default class Post extends Component {
 
         axios.put(`/api/v1/blogposts/${this.props.match.params.id}/`, this.state.blogPost)
             .then(() => {
-                this.setState({redirectToHome: true})
+                this.toggleEditForm()
             })
     }
 
 
     render() {
-        // TO DO: CHANGE THIS TO REDIRECT BACK TO MENTOR
-        if(this.state.redirectToHome) {
-            return <Redirect to="/" />
-        }
+        
 
         return (
             <Container>

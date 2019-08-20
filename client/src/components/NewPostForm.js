@@ -11,8 +11,7 @@ export default class NewPostForm extends Component {
             body: '',
             date: '',
             mentor: this.props.match.params.id
-        },
-        redirectToHome: false
+        }
     }
 
     // new career form
@@ -28,15 +27,12 @@ export default class NewPostForm extends Component {
 
         axios.post(`/api/v1/blogposts/`, this.state.newBlogPost)
             .then(() => {
-                this.setState({redirectToHome: true})
+                this.props.fetchMentor()
             })
     }
 
     render() {
-        if(this.state.redirectToHome){
-            return <Redirect to="/" />
-        }
-
+      
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>

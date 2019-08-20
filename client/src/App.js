@@ -9,10 +9,7 @@ import FindCentersForm from './components/FindCentersForm'
 import './App.css';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Theme from './Theme'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-// import IconButton from '@material-ui/core/IconButton'
-// import MenuIcon from '@material-ui/icons/Menu'
+import { AppBar, Toolbar } from '@material-ui/core'
 
 function App() {
   return (
