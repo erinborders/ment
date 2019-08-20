@@ -20,6 +20,13 @@ body {
   border: 1px solid white;
 }
 
+#slogan {
+  font-family: 'Courgette', cursive;
+  font-size: 30px;
+  color: rgb(207, 232, 253);
+  text-shadow: 2px 2px #000000;
+}
+
 .content-container {
   padding: 30px;
   margin: 30px;

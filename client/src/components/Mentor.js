@@ -69,7 +69,7 @@ export default class Mentor extends Component {
         let postList = this.state.mentor.posts.map(post => {
             return(
                 <div key={post.id}>
-                    <Link to={`/blogposts/${post.id}`} >{post.title}</Link>
+                    <Link style={{textDecoration: 'none'}} to={`/blogposts/${post.id}`} ><h3>{post.title}</h3></Link>
                     <p>{post.description}</p>
                 </div>
             )
@@ -97,7 +97,7 @@ export default class Mentor extends Component {
                                 <p><strong>Profession:</strong> {this.state.mentor.profession}</p>
                                 <p><strong>Employer:</strong> {this.state.mentor.company}</p>
                                 <p><strong>Can Give Advice On:</strong> {this.state.mentor.advice_topics}</p>
-                                <a href={`mailto:${this.state.mentor.email}`}>Contact</a>
+                                <a style={{textDecoration: 'none'}} href={`mailto:${this.state.mentor.email}`}>Contact</a>
                             </CardContent>
                          </div>
                     </Card>
@@ -175,9 +175,12 @@ export default class Mentor extends Component {
 
                 <Button variant="outlined" color="secondary" type="submit" onClick={this.deleteMentor} >Delete</Button>
                 <hr className="break" />
-                <h1>Blog Posts</h1>
+                <h2>Blog Posts</h2>
                 <NewPostForm match={this.props.match} />
+
+                <Container className="content-container">
                     {postList}
+                </Container>
                 </Paper>
             </Container>
         )

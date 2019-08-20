@@ -81,11 +81,12 @@ export default class Post extends Component {
                         <h2>Edit Form</h2> 
                         <form onSubmit={this.handleSubmit}>
                 {/* TO DO: ADD SPACING BETWEEN FORM INPUT FIELDS */}
-                    <div>
+                <Container style={{display: 'flex', justifyContent: 'space-between'}}>
                     <TextField
                         id="post-title"
                         label="Title"
                         name="title"
+                        fullWidth
                         margin="normal"
                         variant="outlined"
                         onChange={this.handleChange}
@@ -100,7 +101,7 @@ export default class Post extends Component {
                         onChange={this.handleChange}
                         value={this.state.blogPost.date} />
 
-                    </div>
+                    </Container>
                     <Container>
 
                     <TextField
