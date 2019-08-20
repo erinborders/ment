@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import Paper from '@material-ui/core/Paper'
-import Container from '@material-ui/core/Container'
+import { Container, Paper, Tooltip } from '@material-ui/core'
 
 export default class CareerList extends Component {
     state = {
@@ -31,9 +30,15 @@ export default class CareerList extends Component {
 
         return (
             <Container>
-                <Paper>
-                    <h1>Career List</h1>
-                    <Link to="/careers/new">Add Career</Link>
+                <Paper className="content-container">
+                    <h1>
+                        Careers 
+                        <Tooltip title="Add a Career" placement="right">
+                            <Link style={{textDecoration: 'none'}} to="/careers/new">(+)</Link>
+                        </Tooltip>
+                    </h1>
+                    
+                    <hr className="break"/>
                     {careerList}
                 </Paper>
             </Container>

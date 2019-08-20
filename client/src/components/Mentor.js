@@ -77,7 +77,7 @@ export default class Mentor extends Component {
 
         return (
             <Container>
-                <Paper>
+                <Paper className="content-container">
                 {/* Mentor's profile and information */}
                 <div style={{display: 'flex', justifyContent: 'center'}} >
                     <Card style={{maxWidth: 645, minHeight: 275, display: 'flex', flexDirection: 'wrap'}} >
@@ -174,7 +174,7 @@ export default class Mentor extends Component {
             }
 
                 <Button variant="outlined" color="secondary" type="submit" onClick={this.deleteMentor} >Delete</Button>
-                
+                <hr className="break" />
                 <h1>Blog Posts</h1>
                 <NewPostForm match={this.props.match} />
                     {postList}

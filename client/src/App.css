@@ -11,12 +11,24 @@ body {
   
 }
 
-/* .career-container {
+.break {
+  width: 30%;
+  background-color: #40b2e7bf;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  padding: 1px;
+  border: 1px solid white;
+}
 
-} */
+.content-container {
+  padding: 30px;
+  margin: 30px;
+}
+
 
 /* career skills and education scrollable containers */
 .skills-education-container {
   display: flex;
   justify-content: space-around;
 }
+

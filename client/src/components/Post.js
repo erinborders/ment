@@ -61,14 +61,16 @@ export default class Post extends Component {
 
         return (
             <Container>
-                <Paper>
+                <Paper className="content-container">
 
                 <h1>{this.state.blogPost.title}</h1>
                 <Button variant="outlined" color="secondary" type="submit" onClick={this.deletePost}>Delete</Button>
                 
                     <p>{this.state.blogPost.date}</p>
                 <h3>{this.state.blogPost.description}</h3>
+                <Container>
                     <p>{this.state.blogPost.body}</p>
+                </Container>
 
                 {
                     this.state.isEditFormShowing ?

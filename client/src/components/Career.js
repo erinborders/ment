@@ -87,7 +87,7 @@ export default class Career extends Component {
 
         let mentorList = this.state.career.mentors.map(mentor => {
             return(
-                <Card key={mentor.id} style={{maxWidth: 345, minHeight: 275}} >
+                <Card key={mentor.id} style={{maxWidth: 300, minHeight: 275}} >
                     <CardMedia
                         component="img"
                         alt={`${mentor.name}`}
@@ -124,12 +124,13 @@ export default class Career extends Component {
         return (
             
             <Container className="career-container" >
-                <Paper>
+                <Paper className="content-container" >
                 <h2>{this.state.career.career_field} in {this.state.career.state}</h2>
                 <Button variant="outlined" color="secondary" type="submit" onClick={this.deleteCareer}>Delete Career</Button>
-                
+                <hr className="break"/>
                 <h3>Description</h3>
                 <p>{this.state.description}</p>
+                <hr className="break"/>
                 <div className="skills-education-container">
                     <div className="career-skills-container">
                         <h3>Skills</h3>
@@ -165,7 +166,7 @@ export default class Career extends Component {
                             </GridList>
                     </div>
                 </div>
-                
+                <hr className="break"/>
                     <h3>Mentors</h3>
                 {/* TO DO: ADD MENTOR FORM TOGGLE */}
                         {
@@ -173,17 +174,19 @@ export default class Career extends Component {
                             <NewMentorForm match={this.props.match}/> :
                             <Button variant="outlined" onClick={this.toggleAddMentorForm}>Add Mentor</Button>
                         }
-                
+
+                    <Container className="content-container">
                         <GridList
                             style={{
                                 display: 'flex',
                                 flexWrap: 'wrap',
                                 justifyContent: 'start',
-                                overflowX: 'scroll',
+                                overflowY: 'scroll',
                                 height: 300,
                             }} >
                                 {mentorList}
                             </GridList>
+                            </Container>
                             </Paper>
             </Container>
         

@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Paper from '@material-ui/core/Paper'
-import { Container } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
+import { Button, Container, TextField } from '@material-ui/core';
 
 export default class FindCentersForm extends Component {
     state = {
@@ -82,12 +80,12 @@ export default class FindCentersForm extends Component {
 
         return (
             <Container>
-                <Paper>
+                <Paper className="content-container">
 
-                <div className="youth-center-search">
+                <Container className="youth-center-search">
                     <h2>Nearby Youth Job Programs</h2>
                     <form onSubmit={this.handleSubmit}>
-                        
+                    <Container className="youth-center-form">
                     <TextField
                         id="youth-program-location"
                         label="Zipcode"
@@ -96,7 +94,9 @@ export default class FindCentersForm extends Component {
                         variant="outlined"
                         onChange={this.handleChange}
                         value={this.state.youthProgram.location} />
+                    </Container>
 
+                    <Container>
                     <TextField
                         id="youth-program-distance"
                         label="Distance"
@@ -105,10 +105,11 @@ export default class FindCentersForm extends Component {
                         variant="outlined"
                         onChange={this.handleChange}
                         value={this.state.youthProgram.radius} />
+                    </Container>
 
-                        <div>
+                        <Container>
                             <Button variant="outlined" color="secondary" type="submit">Find Youth Programs</Button>
-                        </div>
+                        </Container>
                     </form>
 
                     {
@@ -116,12 +117,13 @@ export default class FindCentersForm extends Component {
                         programList : null
                     }
 
-                </div>
-                
+                </Container>
+                <hr className="break"/>
                 <div className="job-center-search">
                     <h2>Nearby American Job Centers</h2>
                     <form onSubmit={this.handleJobSearchSubmit}>
 
+                    <Container>
                     <TextField
                         id="job-center-location"
                         label="Zipcode"
@@ -130,19 +132,22 @@ export default class FindCentersForm extends Component {
                         variant="outlined"
                         onChange={this.handleJobSearchChange}
                         value={this.state.jobCenter.location} />
+                    </Container>
 
+                    <Container>
                     <TextField
-                        id="job-center-location"
+                        id="job-center-distance"
                         label="Distance"
                         name="radius"
                         margin="normal"
                         variant="outlined"
                         onChange={this.handleJobSearchChange}
                         value={this.state.jobCenter.radius} />
+                    </Container>
 
-                        <div>
+                        <Container>
                             <Button variant="outlined" color="secondary" type="submit">Find Job Centers</Button>
-                        </div>
+                        </Container>
                     </form>
 
                     {
