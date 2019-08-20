@@ -32,8 +32,8 @@ export default class Mentor extends Component {
 
         axios.delete(`/api/v1/mentors/${this.props.match.params.id}/`)
             .then(() => {
-                // redirects to home page
-                this.setState({redirectToHome: true})
+                // goes back to career page
+                this.props.history.goBack()
             })
     }
 
@@ -43,7 +43,7 @@ export default class Mentor extends Component {
     }
 
     // handle edit form toggle
-    toggleEditForm = (evt) => {
+    toggleEditForm = () => {
         this.setState({isEditFormShowing: !this.state.isEditFormShowing})
     }
 
@@ -60,18 +60,13 @@ export default class Mentor extends Component {
 
         axios.put(`/api/v1/mentors/${this.props.match.params.id}/`, this.state.mentor)
             .then(() => {
-                this.setState({redirectToHome: true})
+                // to close edit form after mentor has been updated
+                this.toggleEditForm()
             })
     }
 
     
     render() {
-        // TO DO: MAKE THIS REDIRECT TO CAREER PAGE
-        // try using hashhistory or browserhistory (imported from react router)
-        if(this.state.redirectToHome) {
-            return <Redirect to="/" />
-        }
-
         let postList = this.state.mentor.posts.map(post => {
             return(
                 <div key={post.id}>
@@ -188,7 +183,7 @@ export default class Mentor extends Component {
                         label="Create a New Post" />
                    
                     <Collapse in={this.state.isCreateBlogPostShowing}>
-                        <NewPostForm match={this.props.match} />
+                        <NewPostForm match={this.props.match} fetchMentor={this.fetchMentor} />
                     </Collapse> 
                 
 

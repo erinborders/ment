@@ -42,7 +42,6 @@ export default class Career extends Component {
             .then(jobinfo => {
                 this.setState({
                     description: jobinfo.data.Purpose.OnetDesc,
-                    // skills: jobinfo.data.SkillsList,
                     education: jobinfo.data.Education.Certifications
                 })
             })
@@ -72,7 +71,6 @@ export default class Career extends Component {
     }
 
     render() {
-        // const classes = useStyles();
 
         if(this.state.redirectToHome) {
             return <Redirect to="/" />
@@ -168,7 +166,9 @@ export default class Career extends Component {
                         label="Create a Mentor" />
                    
                     <Collapse in={this.state.isMentorFormDisplayed}>
-                         <NewMentorForm match={this.props.match}/> 
+                         <NewMentorForm 
+                         match={this.props.match}
+                         fetchCareer={this.fetchCareer} /> 
                     </Collapse> 
                          
 

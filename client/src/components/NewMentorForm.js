@@ -14,8 +14,8 @@ export default class NewMentorForm extends Component {
             company: '',
             email: '',
             career: this.props.match.params.id
-        },
-        redirectToHome: false
+        }
+       
     }
 
     // new mentor form
@@ -31,14 +31,11 @@ export default class NewMentorForm extends Component {
 
         axios.post(`/api/v1/mentors/`, this.state.newMentor)
             .then(() => {
-                this.setState({redirectToHome: true})
+                this.props.fetchCareer()
             })
     }
 
     render() {
-        if(this.state.redirectToHome){
-            return <Redirect to="/" />
-        }
 
         return (
             <div>
@@ -102,8 +99,7 @@ export default class NewMentorForm extends Component {
                             onChange={this.handleChange}
                             value={this.state.newMentor.email} />
                     </div>
-                
-                    {/* <input type="submit" value="Add Mentor" /> */}
+          
                     <Button variant="outlined" type="submit">Add Mentor</Button>
                 </form>
             </div>
