@@ -40,7 +40,7 @@ export default class NewPostForm extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                {/* TO DO: ADD SPACING BETWEEN FORM INPUT FIELDS */}
+                
                     <Container style={{display: 'flex', justifyContent: 'space-between'}}>
                     <TextField
                         id="post-title"

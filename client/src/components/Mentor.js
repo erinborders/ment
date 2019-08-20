@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import NewPostForm from './NewPostForm'
 import axios from 'axios'
-import { Card, CardContent, CardMedia, Container, Paper, TextField, Button } from '@material-ui/core'
+import { Card, CardContent, CardMedia, Collapse, Container, FormControlLabel, Paper, Switch, TextField, Button } from '@material-ui/core'
 
 export default class Mentor extends Component {
     state = {
@@ -10,7 +10,8 @@ export default class Mentor extends Component {
             posts: []
         },
         redirectToHome: false,
-        isEditFormShowing: false
+        isEditFormShowing: false,
+        isCreateBlogPostShowing: false
     }
 
     componentDidMount(){
@@ -34,6 +35,11 @@ export default class Mentor extends Component {
                 // redirects to home page
                 this.setState({redirectToHome: true})
             })
+    }
+
+    // handle create blog post toggle
+    toggleBlogPost = (evt) => {
+        this.setState({isCreateBlogPostShowing: !this.state.isCreateBlogPostShowing})
     }
 
     // handle edit form toggle
@@ -176,7 +182,15 @@ export default class Mentor extends Component {
                 <Button variant="outlined" color="secondary" type="submit" onClick={this.deleteMentor} >Delete</Button>
                 <hr className="break" />
                 <h2>Blog Posts</h2>
-                <NewPostForm match={this.props.match} />
+
+                <FormControlLabel
+                        control={<Switch checked={this.state.isCreateBlogPostShowing} onChange={this.toggleBlogPost} />}
+                        label="Create a New Post" />
+                   
+                    <Collapse in={this.state.isCreateBlogPostShowing}>
+                        <NewPostForm match={this.props.match} />
+                    </Collapse> 
+                
 
                 <Container className="content-container">
                     {postList}

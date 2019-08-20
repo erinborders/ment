@@ -80,7 +80,7 @@ export default class Post extends Component {
                     <div className="edit-form">
                         <h2>Edit Form</h2> 
                         <form onSubmit={this.handleSubmit}>
-                {/* TO DO: ADD SPACING BETWEEN FORM INPUT FIELDS */}
+                
                 <Container style={{display: 'flex', justifyContent: 'space-between'}}>
                     <TextField
                         id="post-title"
