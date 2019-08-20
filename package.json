@@ -3,5 +3,9 @@
   "scripts": {
     "build": "cd client && npm install && npm run build && cd ..",
     "postinstall": "npm run build && echo 'Client built!'"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.3.2",
+    "@material-ui/icons": "^4.2.1"
   }
 }
