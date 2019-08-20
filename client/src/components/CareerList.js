@@ -30,6 +30,7 @@ export default class CareerList extends Component {
 
         return (
             <Container>
+                <h2 id="slogan">"Don't know what job you want? <br/> Calm down and get some MenT"</h2>
                 <Paper className="content-container">
                     <h1>
                         Careers 

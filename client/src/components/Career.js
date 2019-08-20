@@ -97,7 +97,7 @@ export default class Career extends Component {
                         style={{objectFit: "contain"}}
                          />
                     <CardContent>
-                        <Link to={`/mentors/${mentor.id}`}>{mentor.name}</Link>
+                        <Link style={{textDecoration: 'none'}} to={`/mentors/${mentor.id}`}>{mentor.name}</Link>
                         <p>{mentor.profession}</p>
                         <p>{mentor.company}</p>
                     </CardContent>
