@@ -23,7 +23,7 @@ export default class CareerList extends Component {
         let careerList = this.state.careers.map(career => {
             return(
                 <div key={career.id}>
-                    <Link to={`/careers/${career.id}`} >{career.career_field}</Link>
+                    <Link style={{textDecoration: 'none'}} to={`/careers/${career.id}`} >{career.career_field}</Link>
                 </div>
             )
         })

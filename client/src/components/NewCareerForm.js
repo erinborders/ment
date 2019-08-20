@@ -41,10 +41,10 @@ export default class NewCareerForm extends Component {
 
         return (
             <Container>
-                <Paper>
+                <Paper className="content-container">
 
                 <h2>New Career Form</h2>
-                <a href="https://www.onetcodeconnector.org/find/result">Find Onet Codes</a>
+                <a href="https://www.onetcodeconnector.org/find/result" target="_blank">Find Onet Codes</a>
                 <form onSubmit={this.handleSubmit}>
                     <div>
                         <TextField
