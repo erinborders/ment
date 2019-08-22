@@ -24,6 +24,7 @@ export default class CareerList extends Component {
             return(
                 <div key={career.id}>
                     <Link style={{textDecoration: 'none'}} to={`/careers/${career.id}`} >{career.career_field}</Link>
+                    <img src={`${career.image}`} />
                 </div>
             )
         })
