@@ -19,5 +19,5 @@ class CareerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Career
-        fields = ('id', 'career_field', 'occupations', 'onetcode', 'state', 'mentors')
+        fields = ('id', 'career_field', 'occupations', 'onetcode', 'state', 'image', 'mentors')
 
